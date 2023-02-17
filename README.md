@@ -1,53 +1,45 @@
-# Aave Flash Loan and Arbitrage swaps 
+#  Arbitrage Bot
 
-## Dependencies
+## Setup
 
-* Node v14.17.5
-* npm 6.14.14
-* Ganache CLI v6.12.2
-* Truffle v5.1.55 
+**Prerequisites:**
 
-Packages and their versions are in the "package.json" file
+* Node.js (v14.17.5)
+* npm (6.14.14)
+* Ganache CLI (v6.12.2)
+* Truffle (v5.1.55)
 
-## Resources
+Refer to `package.json` for specific package versions.
 
-* [Aave](https://github.com/aave)
-* [Uniswap](https://github.com/Uniswap)
-* [Flashbots ](https://github.com/flashbots)
+## Local Testing 
 
-## Testing
-The test is optimized to get a successful arbitrage transaction. 
+1. **Launch Ganache:**
+   ```bash
+   ganache-cli --fork <Ethereum-Node-URL>@13027545 --unlock 0xE8E8f41Ed29E46f34E206D7D2a7D6f735A3FF2CB 
+   ```
+   *(Note: Infura can replace the Ethereum Node. Block number is crucial.)*
 
-Follow the steps.
-
-Write in a console the next line:
-
-```
-$ ganache-cli --fork Ethereum-Node-URL@13027545 --unlock 0xE8E8f41Ed29E46f34E206D7D2a7D6f735A3FF2CB 
-```
-(You could use [Infura](https://www.infura.io/) for the node. Also, the block number is important for the test.)
-
-Then, write in a different console within the root directory of the repository:
-
-```
-$ truffle test 
-```
+2. **Run Truffle Tests:**
+   ```bash
+   truffle test
+   ```
 
 
-## Deployment 
+## Mainnet Deployment 
 
-To deploy the contract into the Ethereum-Mainnet, run:
+1. **Modify Contract:**
+   Uncomment line 396 in `Flashy.sol` for miner fee functionality.
 
-```bash
-$ truffle migrate --network ethereum_mainnet
-```
+2. **Deploy:**
+   ```bash
+   truffle migrate --network ethereum_mainnet
+   ```
 
-Before you deploy it, you should uncomment the line 396 in the Flashy.sol file. 
-With this modification the contract can make the respective fee payment to the minner. Also, you can withdraw the profit of the transaction based on the percentage you pass it. Percentage recommended: 80% minner & 20% you, but obviously it depends on the profit you're making, if it's a huge profit, that percentege to the miner could be considerably smaller.
-<br />
-<br />
-<br />
+   **Fee Split:** Consider a miner fee of 80% and a 20% profit share. Adjust as needed. 
 
-**Note: As an advice, I really recommend you to use [Foundry](https://github.com/foundry-rs/foundry)  for your projects. It's a better tool than [Truffle](https://github.com/trufflesuite/truffle) or even [Hardhat](https://github.com/NomicFoundation/hardhat).**
 
-**Good Luck! ;)**
+## Recommendation
+
+Explore [Foundry](https://github.com/foundry-rs/foundry) for future projects. It's superior to Truffle and Hardhat.
+
+**Best of luck with your ventures!** 
